@@ -9,8 +9,8 @@ How to Install
 Global Installation
 ^^^^^^^^^^^^^^^^^^^
 
-You will need `Python 3.7 or newer <https://www.python.org/downloads/>`_ installed on your system to use the latest version of ``esptool.py``.
-If your use case requires Python 2.7, 3.4, 3.5, or 3.6, please use ``esptool.py`` v3.3.* instead.
+You will need `Python 3.10 or newer <https://www.python.org/downloads/>`_ installed on your system to use the latest version of ``esptool.py``.
+If your use case requires Python 3.7, 3.8, or 3.9, please use ``esptool.py`` v4.x. For Python 2.7, 3.4, 3.5, or 3.6, please use ``esptool.py`` v3.3.* instead.
 
 The latest stable esptool release can be installed from `PyPI <https://pypi.org/project/esptool/>`_ via pip:
 
@@ -69,6 +69,8 @@ If updating directly is unavoidable, make sure you update to a compatible versio
 
    $ pip install "esptool<4"
 
+.. _shell-completion:
+
 Shell Completions
 -----------------
 
@@ -76,37 +78,67 @@ To activate autocompletion, you can manually add commands provided below to your
 or run them in your current terminal session for one-time activation.
 You will likely have to restart or re-login for the autocompletion to start working.
 
-Bash
-^^^^
+.. tabs::
 
-::
+   .. group-tab:: Bash
 
-   eval "$(register-python-argcomplete esptool.py espsecure.py espefuse.py)"
+      .. tabs::
 
-Zsh
-^^^
+         .. group-tab:: v5
 
-To activate completions in zsh, first make sure `compinit` is marked for
-autoload and run autoload:
+            .. code-block:: bash
 
-.. code-block:: bash
+               eval "$(_ESPTOOL_PY_COMPLETE=bash_source esptool.py espsecure.py espefuse.py)"
 
-   autoload -U compinit
-   compinit
+         .. group-tab:: v4
 
-Afterwards you can enable completions for esptool.py, espsecure.py and espefuse.py:
+            .. code-block:: bash
 
-::
+               eval "$(register-python-argcomplete esptool.py espsecure.py espefuse.py)"
 
-   eval "$(register-python-argcomplete esptool.py espsecure.py espefuse.py)"
+   .. group-tab:: Zsh
 
-Fish
-^^^^
+      To activate completions in zsh, first make sure `compinit` is marked for
+      autoload and run autoload:
 
-Not required to be in the config file, only run once
+      .. code-block:: bash
 
-::
+         autoload -U compinit
+         compinit
 
-   register-python-argcomplete --shell fish esptool.py espsecure.py espefuse.py >~/.config/fish/completions/esptool.py.fish
+      Afterwards you can enable completions for esptool.py, espsecure.py and espefuse.py:
+
+      .. tabs::
+
+         .. group-tab:: v5
+
+            .. code-block:: bash
+
+               eval "$(_ESPTOOL_PY_COMPLETE=zsh_source esptool.py espsecure.py espefuse.py)"
+
+         .. group-tab:: v4
+
+            .. code-block:: bash
+
+               eval "$(register-python-argcomplete esptool.py espsecure.py espefuse.py)"
+
+   .. group-tab:: Fish
+
+      .. tabs::
+
+         .. group-tab:: v5
+
+            .. code-block:: bash
+
+               _ESPTOOL_PY_COMPLETE=fish_source esptool.py espsecure.py espefuse.py | source
+
+         .. group-tab:: v4
+
+            Not required to be in the config file, only run once
+
+            .. code-block:: bash
+
+               register-python-argcomplete --shell fish esptool.py espsecure.py espefuse.py >~/.config/fish/completions/esptool.py.fish
+
 
 Other shells nor OS Windows are not supported.

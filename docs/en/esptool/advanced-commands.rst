@@ -20,10 +20,10 @@ The ``write_flash`` command always verifies the MD5 hash of data which is writte
 
 ::
 
-    esptool.py verify_flash --diff yes 0x40000 my_app.elf-0x40000.bin
+    esptool.py verify_flash --diff 0x40000 my_app.elf-0x40000.bin
 
 
-The ``--diff yes`` option specifies that if the files are different, the details should be printed to the console.
+The ``--diff`` option specifies that if the files are different, the details should be printed to the console.
 
 .. note::
 
@@ -132,6 +132,18 @@ The Serial Flash Discoverable Parameters (SFDP) store essential vendor-specific 
     esptool.py read_flash_sfdp 16 4
 
 This will read 4 bytes from SFDP address 16.
+
+.. only:: not esp8266 and not esp32
+
+    Read Security Info: ``get_security_info``
+    ------------------------------------------
+
+    The ``get_security_info`` command allows you to read security-related information (secure boot, secure download, etc.) about the Espressif devices.
+
+    ::
+
+        esptool.py get_security_info
+
 
 .. only:: esp8266
 
